@@ -20,9 +20,21 @@ app.get("/new-entry", (req, res) => {
     res.render("new-entry");
 });
 
+app.post("/new-entry", (req, res) => {
+    if(!req.body.title || !req.body.body) {
+        res.status(400).send("Entries must have a title and a body.");
+    }
+    entries.push({
+        title: req.body.title,
+        body: req.body.body,
+        published: new Date()
+    });
+    res.redirect("/");
+});
+
 app.use((req, res) => {
     res.status(404).render("404");
-})
+});
 
 const port = process.env.PORT || 3000;
 
