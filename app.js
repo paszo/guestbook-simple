@@ -12,9 +12,13 @@ app.locals.entries = entries;
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/",  function (req, res) {
+app.get("/", (req, res) => {
     res.render("index");
 });
+
+app.get("/new-entry", (req, res) => {
+    res.render("new-entry");
+})
 
 const port = process.env.PORT || 3000;
 
